@@ -1,36 +1,26 @@
 const date = document.getElementById("date");
 const button = document.getElementById("button");
 
-//functions
-function clickHandler() {
-  console.log(date.value);
+function checkPalindrome() {
   const userDate = date.value;
-  const dateSplit = userDate.split("-");
-  const reverseDate = date.value.split("").reverse().join("");
-  console.log(reverseDate);
-  if (userDate === reverseDate) {
-    console.log(true);
+  console.log(userDate);
+  //format one ddmmyy
+  const forwardDate = userDate.split("-").reverse().join("");
+  console.log(forwardDate);
+  const one = forwardDate.substring(0, 4);
+  const reversedOne = one.split("").reverse().join("");
+  console.log(reversedOne);
+  const two = forwardDate.substring(4);
+  console.log(one, two);
+  if (one === two) {
+    console.log("hurrey");
   } else {
-    console.log(false);
+    console.log("nope");
   }
-
-  const year = dateSplit[0];
-
-  const month = dateSplit[1];
-
-  const day = dateSplit[2];
-  //format one
-  const ddmmyy = day + month + year;
-  console.log(ddmmyy);
-  const formatOne = ddmmyy.split("").reverse().join("");
-  console.log(formatOne);
-  //format two
-  const yymmdd = year + month + day;
-  //format three
-  const mmddyy = month + day + year;
-  //format four
-  const yyddmm = year + month + day;
+  //format two yymmdd
+  const BackwardDate = userDate.split("-").join("");
+  console.log(BackwardDate);
 }
 
-//events
-button.addEventListener("click", clickHandler);
+//Events
+button.addEventListener("click", checkPalindrome);
