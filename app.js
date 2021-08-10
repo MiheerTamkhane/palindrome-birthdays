@@ -1,20 +1,15 @@
 const inputDate = document.querySelector("#date");
 const button = document.querySelector("#button");
 const output = document.querySelector("#output");
+
 function reverseStr(str) {
   return str.split("").reverse().join("");
 }
 
 function isPalindrome(str) {
   const reverse = reverseStr(str);
-  let X = false;
-  if (str === reverse) {
-    X = true;
-  } else {
-    X = false;
-  }
 
-  return X;
+  return str === reverse;
 }
 
 function convertDateIntoString(date) {
@@ -40,25 +35,26 @@ function convertDateIntoString(date) {
 function allDatesFormates(date) {
   const dateString = convertDateIntoString(date);
 
-  let ddmmyyyy = dateString.day + dateString.month + dateString.year;
-  let mmddyyyy = dateString.month + dateString.day + dateString.year;
-  let yyyymmdd = dateString.year + dateString.month + dateString.day;
-  let ddmmyy = dateString.day + dateString.month + dateString.year.slice(-2);
-  let mmddyy = dateString.month + dateString.day + dateString.year.slice(-2);
-  let yymmdd = dateString.year.slice(-2) + dateString.month + dateString.day;
-
+  const ddmmyyyy = dateString.day + dateString.month + dateString.year;
+  const mmddyyyy = dateString.month + dateString.day + dateString.year;
+  const yyyymmdd = dateString.year + dateString.month + dateString.day;
+  const ddmmyy = dateString.day + dateString.month + dateString.year.slice(-2);
+  const mmddyy = dateString.month + dateString.day + dateString.year.slice(-2);
+  const yymmdd = dateString.year.slice(-2) + dateString.month + dateString.day;
   return [ddmmyyyy, mmddyyyy, yyyymmdd, ddmmyy, mmddyy, yymmdd];
 }
 
 function checkPalindrome(date) {
   const listOfPalindromes = allDatesFormates(date);
-  let x = false;
-  listOfPalindromes.map((palindromes) => {
-    if (isPalindrome(palindromes)) {
-      x = true;
+  let flag = false;
+  for (let i = 0; i < listOfPalindromes.length; i++) {
+    if (isPalindrome(listOfPalindromes[i])) {
+      flag = true;
+
+      break;
     }
-  });
-  return x;
+  }
+  return flag;
 }
 
 function isLeapYear(year) {
@@ -102,7 +98,7 @@ function getNextDate(date) {
     }
   }
   if (month > 12) {
-    mongth = 1;
+    month = 1;
     year++;
   }
 
@@ -111,11 +107,11 @@ function getNextDate(date) {
 
 function getNextPalindromeDate(date) {
   let counter = 0;
-  let nextDate = getNextDate(date);
+  var nextDate = getNextDate(date);
 
   while (1) {
     counter++;
-    let isPalindrome = checkPalindrome(nextDate);
+    var isPalindrome = checkPalindrome(nextDate);
     if (isPalindrome) {
       break;
     }
@@ -135,8 +131,10 @@ function clickHandler() {
       month: Number(listOfDates[1]),
       year: Number(listOfDates[0]),
     };
+
     let isPalindrome = checkPalindrome(date);
-    if (isPalindrome === true) {
+
+    if (isPalindrome) {
       output.innerText = `HURREY! your birthdate : ${date.day} / ${date.month} /${date.year} is Palindrome. `;
     } else {
       let [counter, nextDate] = getNextPalindromeDate(date);
@@ -147,5 +145,9 @@ function clickHandler() {
     output.innerText = "Enter valid date to proceed.";
   }
 }
+
 //Events
-button.addEventListener("click", clickHandler);
+button.addEventListener("click", () => {
+  output.innerHTML = "<img src='./gifs/loading.gif' />";
+  setTimeout(clickHandler, 3000);
+});
