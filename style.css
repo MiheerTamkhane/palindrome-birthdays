@@ -150,7 +150,7 @@ footer {
 }
 
 @media screen and (min-width: 360px) and (max-width: 640px) {
-  img {
+  section img {
     display: none;
   }
   .content {
