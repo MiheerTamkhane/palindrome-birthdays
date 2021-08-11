@@ -2,17 +2,24 @@
   padding: 0%;
   margin: 0%;
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&family=Varela&display=swap");
 body {
-  background-color: #f9f9f9;
+  background-color: #fff8ee;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   /* font-family: "Varela", sans-serif; */
+  color: rgb(20, 20, 20);
   font-family: "Montserrat", sans-serif;
 }
+h1,
+h2 {
+  color: #dea54a;
+}
+
 section {
   width: 90%;
   height: 100vh;
@@ -23,7 +30,8 @@ section {
   justify-content: center;
 }
 section h1 {
-  font-size: 2rem;
+  text-align: start;
+  font-size: 2.6rem;
   margin: 0.5rem;
 }
 section p {
@@ -38,6 +46,12 @@ section button {
   border: none;
   outline: none;
   cursor: pointer;
+  background-color: #0e538c;
+  color: #f9f9f9;
+  transition: all 0.2s ease-in;
+}
+section button:hover {
+  background-color: #0b4870;
 }
 .content {
   margin-left: 10rem;
@@ -55,9 +69,10 @@ img {
   /* margin-right: 2rem; */
 }
 main {
-  width: 60%;
+  padding-top: 2rem;
+  width: 70%;
   margin-bottom: 1rem;
-  height: 90vh;
+  height: 100vh;
   text-align: center;
 }
 main h2 {
@@ -84,9 +99,16 @@ main p {
   border: none;
   outline: none;
   cursor: pointer;
+  background-color: #0e538c;
+  color: #f9f9f9;
+  transition: all 0.2s ease-in;
+}
+.container button:hover {
+  background-color: #0b4870;
 }
 .container label {
   font-size: 1.6rem;
+  color: #0b4870;
 }
 .container input {
   font-size: 1.3rem;
@@ -95,17 +117,19 @@ main p {
   border-radius: 0.4rem;
   border: none;
   outline: none;
-  background-color: orangered;
+  background-color: #ffbe55;
+  color: #0b4870;
 }
 .output {
   margin-top: 1.2rem;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   padding: 1rem;
   border-radius: 10px;
   text-align: center;
+  color: #0e538c;
 }
 .output img {
-  height: 200px;
+  height: 100%;
 }
 .footer-para {
   text-align: center;
@@ -116,8 +140,20 @@ main p {
 }
 .fab {
   padding: 0rem 0.5rem;
+  text-decoration: none;
+  color: #0b4870;
 }
 footer {
   margin: 1rem 0rem 2rem 0rem;
   text-align: center;
+  color: #0b4870;
+}
+
+@media screen and (min-width: 360px) and (max-width: 640px) {
+  img {
+    display: none;
+  }
+  .content {
+    margin-right: 10rem;
+  }
 }

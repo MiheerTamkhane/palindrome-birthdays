@@ -135,14 +135,14 @@ function clickHandler() {
     let isPalindrome = checkPalindrome(date);
 
     if (isPalindrome) {
-      output.innerText = `HURREY! your birthdate : ${date.day} / ${date.month} /${date.year} is Palindrome. `;
+      output.innerText = `HURREY! your birthdate : ${date.day} / ${date.month} /${date.year} is Palindrome.😃 `;
     } else {
       let [counter, nextDate] = getNextPalindromeDate(date);
 
-      output.innerText = `OOOPS! your birthday is not Palindrome. Next date is ${nextDate.day} / ${nextDate.month} /${nextDate.year} , it will come in next ${counter} days!`;
+      output.innerText = `OOOPS! your birthday is not Palindrome.😥 Next date is ${nextDate.day} / ${nextDate.month} /${nextDate.year} , it will come in next ${counter} days!✨`;
     }
   } else {
-    output.innerText = "Enter valid date to proceed.";
+    output.innerText = "Enter valid date to proceed!";
   }
 }
 
