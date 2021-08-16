@@ -50,7 +50,6 @@ function checkPalindrome(date) {
   for (let i = 0; i < listOfPalindromes.length; i++) {
     if (isPalindrome(listOfPalindromes[i])) {
       flag = true;
-
       break;
     }
   }
@@ -120,6 +119,59 @@ function getNextPalindromeDate(date) {
   return [counter, nextDate];
 }
 
+function getPreviousDate(date) {
+  var day = date.day - 1;
+  var month = date.month;
+  var year = date.year;
+
+  var daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+  if (month === 3) {
+    if (isLeapYear(year)) {
+      if (day < 1) {
+        day = 29;
+        month--;
+      }
+    } else {
+      if (day < 1) {
+        day = 28;
+        month--;
+      }
+    }
+  } else {
+    if (day < 1) {
+      month--;
+      if (month < 1) {
+        month = 12;
+        year--;
+      }
+      day = daysInMonth[month - 1];
+    }
+  }
+
+  return {
+    day: day,
+    month: month,
+    year: year,
+  };
+}
+
+function getPreviousPalindromeDate(date) {
+  var ctr = 0;
+  var previousDate = getPreviousDate(date);
+
+  while (1) {
+    ctr++;
+    var isPreviousPalindrom = checkPalindrome(previousDate);
+    if (isPreviousPalindrom) {
+      break;
+    }
+    previousDate = getPreviousDate(previousDate);
+  }
+
+  return [ctr, previousDate];
+}
+
 function clickHandler() {
   const bdayString = inputDate.value;
 
@@ -138,8 +190,9 @@ function clickHandler() {
       output.innerText = `HURREY! your birthdate : ${date.day} / ${date.month} /${date.year} is Palindrome.😃 `;
     } else {
       let [counter, nextDate] = getNextPalindromeDate(date);
+      let [ctr, previousDate] = getPreviousPalindromeDate(date);
 
-      output.innerText = `OOOPS! your birthday is not Palindrome.😥 Next date is ${nextDate.day} / ${nextDate.month} /${nextDate.year} , it will come in next ${counter} days!✨`;
+      output.innerText = `OOOPS! your birthday is not Palindrome.😥 Next date is ${nextDate.day} / ${nextDate.month} /${nextDate.year} , it will come in next ${counter} days!✨ & Previous date was ${previousDate.day} / ${previousDate.month} /${previousDate.year} , is gon by ${ctr} days!✨`;
     }
   } else {
     output.innerText = "Enter valid date to proceed!";
