@@ -120,14 +120,15 @@ main p {
   background-color: #ffbe55;
   color: #0b4870;
 }
-.output {
-  margin-top: 1.2rem;
+.output p {
+  /* margin-top: 1.2rem; */
   font-size: 1.6rem;
-  padding: 1rem;
+  /* padding: 1rem; */
   border-radius: 10px;
   text-align: center;
   color: #0e538c;
 }
+
 .output img {
   height: 100%;
 }
