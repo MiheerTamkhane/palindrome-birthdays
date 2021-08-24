@@ -192,7 +192,8 @@ function clickHandler() {
       let [counter, nextDate] = getNextPalindromeDate(date);
       let [ctr, previousDate] = getPreviousPalindromeDate(date);
 
-      output.innerText = `OOOPS! your birthday is not Palindrome.😥 Next date is ${nextDate.day} / ${nextDate.month} /${nextDate.year} , it will come in next ${counter} days!✨ & Previous date was ${previousDate.day} / ${previousDate.month} /${previousDate.year} , is gon by ${ctr} days!✨`;
+      output.innerHTML = `<p>OOOPS! your birthday is not Palindrome.😥</p> <p> Next date is ${nextDate.day}-${nextDate.month}-${nextDate.year}, it will come in next ${counter} days!✨</p>
+      <p>Previous date was ${previousDate.day}-${previousDate.month}-${previousDate.year} ,it is gon by ${ctr} days!✨</p>`;
     }
   } else {
     output.innerText = "Enter valid date to proceed!";

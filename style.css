@@ -139,7 +139,7 @@ main p {
   font-size: 1.8rem;
 }
 .fab {
-  padding: 0rem 0.5rem;
+  padding: 1rem 0.5rem 0rem 0.5rem;
   text-decoration: none;
   color: #0b4870;
 }
