@@ -2,37 +2,28 @@ const inputDate = document.querySelector("#date");
 const button = document.querySelector("#button");
 const output = document.querySelector("#output");
 
-function reverseStr(str) {
-  return str.split("").reverse().join("");
-}
-
-function isPalindrome(str) {
+const reverseStr = (str) => str.split("").reverse().join("");
+const isPalindrome = (str) => {
   const reverse = reverseStr(str);
-
   return str === reverse;
-}
+};
 
-function convertDateIntoString(date) {
+const convertDateIntoString = (date) => {
   const dateStr = { day: "", month: "", year: "" };
+  date.day < 10
+    ? (dateStr.day = "0" + date.day)
+    : (dateStr.day = date.day.toString());
 
-  if (date.day < 10) {
-    dateStr.day = "0" + date.day;
-  } else {
-    dateStr.day = date.day.toString();
-  }
-
-  if (date.month < 10) {
-    dateStr.month = "0" + date.month;
-  } else {
-    dateStr.month = date.month.toString();
-  }
+  date.month < 10
+    ? (dateStr.month = "0" + date.month)
+    : (dateStr.month = date.month.toString());
 
   dateStr.year = date.year.toString();
 
   return dateStr;
-}
+};
 
-function allDatesFormates(date) {
+const allDatesFormates = (date) => {
   const dateString = convertDateIntoString(date);
 
   const ddmmyyyy = dateString.day + dateString.month + dateString.year;
@@ -42,9 +33,9 @@ function allDatesFormates(date) {
   const mmddyy = dateString.month + dateString.day + dateString.year.slice(-2);
   const yymmdd = dateString.year.slice(-2) + dateString.month + dateString.day;
   return [ddmmyyyy, mmddyyyy, yyyymmdd, ddmmyy, mmddyy, yymmdd];
-}
+};
 
-function checkPalindrome(date) {
+const checkPalindrome = (date) => {
   const listOfPalindromes = allDatesFormates(date);
   let flag = false;
   for (let i = 0; i < listOfPalindromes.length; i++) {
@@ -54,9 +45,9 @@ function checkPalindrome(date) {
     }
   }
   return flag;
-}
+};
 
-function isLeapYear(year) {
+const isLeapYear = (year) => {
   if (year % 400 === 0) {
     return true;
   }
@@ -67,9 +58,9 @@ function isLeapYear(year) {
     return true;
   }
   return false;
-}
+};
 
-function getNextDate(date) {
+const getNextDate = (date) => {
   let day = date.day + 1;
   let month = date.month;
   let year = date.year;
@@ -102,29 +93,29 @@ function getNextDate(date) {
   }
 
   return { day: day, month: month, year: year };
-}
+};
 
-function getNextPalindromeDate(date) {
+const getNextPalindromeDate = (date) => {
   let counter = 0;
-  var nextDate = getNextDate(date);
+  let nextDate = getNextDate(date);
 
   while (1) {
     counter++;
-    var isPalindrome = checkPalindrome(nextDate);
+    let isPalindrome = checkPalindrome(nextDate);
     if (isPalindrome) {
       break;
     }
     nextDate = getNextDate(nextDate);
   }
   return [counter, nextDate];
-}
+};
 
-function getPreviousDate(date) {
-  var day = date.day - 1;
-  var month = date.month;
-  var year = date.year;
+const getPreviousDate = (date) => {
+  let day = date.day - 1;
+  let month = date.month;
+  let year = date.year;
 
-  var daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+  let daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
   if (month === 3) {
     if (isLeapYear(year)) {
@@ -154,15 +145,15 @@ function getPreviousDate(date) {
     month: month,
     year: year,
   };
-}
+};
 
-function getPreviousPalindromeDate(date) {
-  var ctr = 0;
-  var previousDate = getPreviousDate(date);
+const getPreviousPalindromeDate = (date) => {
+  let ctr = 0;
+  let previousDate = getPreviousDate(date);
 
   while (1) {
     ctr++;
-    var isPreviousPalindrom = checkPalindrome(previousDate);
+    let isPreviousPalindrom = checkPalindrome(previousDate);
     if (isPreviousPalindrom) {
       break;
     }
@@ -170,9 +161,9 @@ function getPreviousPalindromeDate(date) {
   }
 
   return [ctr, previousDate];
-}
+};
 
-function clickHandler() {
+const clickHandler = () => {
   const bdayString = inputDate.value;
 
   if (bdayString !== "") {
@@ -185,9 +176,9 @@ function clickHandler() {
     };
 
     let isPalindrome = checkPalindrome(date);
-
+    const { day, month, year } = date;
     if (isPalindrome) {
-      output.innerText = `HURREY! your birthdate : ${date.day} / ${date.month} /${date.year} is Palindrome.😃 `;
+      output.innerText = `HURREY! your birthdate : ${day} / ${month} /${year} is Palindrome.😃 `;
     } else {
       let [counter, nextDate] = getNextPalindromeDate(date);
       let [ctr, previousDate] = getPreviousPalindromeDate(date);
@@ -198,7 +189,7 @@ function clickHandler() {
   } else {
     output.innerText = "Enter valid date to proceed!";
   }
-}
+};
 
 //Events
 button.addEventListener("click", () => {
